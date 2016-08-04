@@ -1,7 +1,15 @@
 $(document)._.addEventListener("DOMContentLoaded", function() {
-    $$("[data-cart-productList]").forEach(function(elt) {
+    $$("[data-cart-products]").forEach(function(elt) {
         var request = new XMLHttpRequest();
-        request.open("POST", "backend/products.php?category=" + elt.getAttribute("data-cart-productList"), true);
+        request.open("POST", "backend/products.php?category=" + elt.getAttribute("data-cart-products"), true);
+        request.send();
+        request.onload = function() {
+            elt.innerHTML = request.responseText;
+        }
+    });
+    $$("[data-cart-categories]").forEach(function(elt) {
+        var request = new XMLHttpRequest();
+        request.open("POST", "backend/categories.php", true);
         request.send();
         request.onload = function() {
             elt.innerHTML = request.responseText;
@@ -12,6 +20,9 @@ $(document)._.addEventListener("DOMContentLoaded", function() {
     });
     $(".refresh-cart-button").addEventListener("click", function() {
         refreshCart();
+    });
+    $$(".cart-toggle")._.addEventListener("click", function() {
+        $(".product-cart").classList.toggle("hidden");
     });
     refreshCart();
 });
@@ -58,6 +69,18 @@ var clearCart = function() {
         refreshCart();
         notify("Cart Cleared");
     }
+}
+
+var loadProducts = function(category) {
+    $("[data-cart-products]").innerHTML = '<img class="loading-image" src="img/loading.gif">';
+    var request = new XMLHttpRequest();
+    request.open("POST", "backend/products.php?category=" + category, true);
+    request.send();
+    request.onload = function() {
+        $("[data-cart-products]").innerHTML = request.responseText;
+        $("[data-cart-category]").innerHTML = category == "all" ? "All Products" : category;
+    }
+    $$(".header-category-link")._.classList.remove("active");
 }
 
 var refreshCart = function() {

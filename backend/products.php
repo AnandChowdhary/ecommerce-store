@@ -1,5 +1,4 @@
 <?php
-    $team_id = isset($_GET["team_id"]) ? $_GET["team_id"] : "1";
     file_exists("class.php") ? include "class.php" : include "../class.php";
     if ($_SERVER['REMOTE_ADDR'] == "::1") {
         DB::$user = "root";

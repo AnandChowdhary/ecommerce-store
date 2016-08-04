@@ -1,3 +1,7 @@
+body {
+    margin-top: 100px;
+}
+
 .product-image {
     background: whitesmoke;
     height: 225px;
@@ -31,8 +35,11 @@
 
 .product-cart {
     position: fixed;
-    left: 30px;
-    top: 30px;
+    right: 30px;
+    top: 100px;
+    max-height: calc(100vh - 160px);
+    overflow: auto;
+    line-height: 1.4;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 3px;
     border: 1px solid #eee;
@@ -61,9 +68,12 @@
     right: 0;
     top: 0;
     background: #1abc9c;
+    z-index: 10;
     color: #fff;
     text-align: center;
-    padding: 10px;
+    height: 65px;
+    line-height: 63px;
+    font-weight: bold;
     display: none;
 }
 
@@ -82,4 +92,49 @@
     display: block;
     margin: 20px auto 30px auto;
     width: 50%;
+}
+
+.cart-close {
+    position: absolute;
+    right: 30px;
+    font-size: 200%;
+    top: 10px;
+    cursor: pointer;
+    color: #aaa;
+}
+.cart-close:hover {
+    color: #555;
+}
+
+.hidden {
+    display: none;
+}
+
+#masthead {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #eee;
+    z-index: 4;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    line-height: 63px;
+}
+#masthead .link {
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+}
+#masthead .link:not(:last-child) {
+    margin-right: 25px;
+}
+
+.right {
+    text-align: right;
+}
+
+.link.active {
+    color: #555;
 }

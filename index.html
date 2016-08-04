@@ -7,20 +7,31 @@
         <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
     <body>
-        <div class="product-cart">
-            <h3>Cart</h3>
-            <p data-cart>
-                <img class="loading-image" src="img/loading.gif">
-            </p>
-            <div class="cart-manage">
-                <button class="clear-cart-button">Clear Cart</button>
-                <button class="refresh-cart-button">Refresh Cart</button><br>
-                <button class="checkout-button button-primary">Checkout</button>
+        <header id="masthead">
+            <div class="container">
+                <div class="eight columns">
+                    <div data-cart-categories>Loading...</div>
+                </div>
+                <div class="four columns right">
+                    <span class="cart-toggle link">Cart</span>
+                </div>
             </div>
-        </div>
+            <div class="product-cart hidden">
+                <div class="cart-toggle cart-close">&times;</div>
+                <h3>Cart</h3>
+                <p data-cart>
+                    <img class="loading-image" src="img/loading.gif">
+                </p>
+                <div class="cart-manage">
+                    <button class="clear-cart-button">Clear Cart</button>
+                    <button class="refresh-cart-button">Refresh Cart</button><br>
+                    <button class="checkout-button button-primary">Checkout</button>
+                </div>
+            </div>
+        </header>
         <div class="container">
-            <h2>All Products</h2>
-            <div data-cart-productList="all" class="products">
+            <h2 data-cart-category>All Products</h2>
+            <div data-cart-products="all" class="products">
                 <img class="loading-image" src="img/loading.gif">
             </div>
         </div>
