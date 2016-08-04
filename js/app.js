@@ -62,12 +62,13 @@ var clearCart = function() {
 
 var refreshCart = function() {
     $$("[data-cart]").forEach(function(elt) {
+        elt.innerHTML = '<img class="loading-image" src="img/loading.gif">';
         var request = new XMLHttpRequest();
         request.open("POST", "backend/cart.php", true);
         request.send();
         request.onload = function() {
             if (request.responseText != "") {
-                $(".cart-manage").style.display = "";
+                $(".cart-manage").classList.remove("disabled");
                 var initialResponse = request.responseText.split("~~~");
                 var products = initialResponse[0].split("|-|");
                 var quantities = initialResponse[1].split("|-|");
@@ -83,8 +84,8 @@ var refreshCart = function() {
                 finalResult += "</ul>";
                 elt.innerHTML = finalResult;
             } else {
-                $(".cart-manage").style.display = "none";
-                elt.innerHTML = "<ul><li>No products</li></ul>";
+                $(".cart-manage").classList.add("disabled");
+                elt.innerHTML = "<img src='img/cart-empty.png' class='cart-empty-state'>";
             }
         }
     });

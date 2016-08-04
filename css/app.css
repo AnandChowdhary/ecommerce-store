@@ -12,6 +12,10 @@
     margin-top: 10px;
 }
 
+.disabled {
+    opacity: 0.5;
+}
+
 [disabled] {
     opacity: 0.65;
     background: whitesmoke;
@@ -61,4 +65,21 @@
     text-align: center;
     padding: 10px;
     display: none;
+}
+
+.checkout-button {
+    width: 100%;
+}
+
+.loading-image {
+    width: 80px;
+    height: 60px;
+    display: block;
+    margin: 0 auto;
+}
+
+.cart-empty-state {
+    display: block;
+    margin: 20px auto 30px auto;
+    width: 50%;
 }
