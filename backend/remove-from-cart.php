@@ -1,7 +1,15 @@
 <?php
     $product = $_GET["product"];
     if(isset($_COOKIE["cart"])) {
-        $text = explode($product, $_COOKIE["cart"]);
-        //setcookie("cart", str_replace($product . "|-|", "", $_COOKIE["cart"]), time() + (86400 * 30), "/");
+        $cart = unserialize($_COOKIE["cart"]);
+        $valElt = 0;
+        for ($i = 0; $i < sizeof($cart); $i++) {
+            if ($cart[$i] == $product) {
+                $valElt = $i;
+            }
+        }
+        $cart[$valElt] = "";
+        $cart[$valElt + 1] = "";
+        setcookie("cart", serialize($cart), time() + (86400 * 30), "/");
     }
 ?>

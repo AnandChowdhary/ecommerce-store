@@ -56,7 +56,7 @@ var notify = function(notification) {
     $(".notification").style.display = "block";
     setTimeout(function() {
         $(".notification").style.display = "none";
-    }, 1000);
+    }, 3000);
 }
 
 var clearCart = function() {
@@ -80,7 +80,6 @@ var loadProducts = function(category) {
         $("[data-cart-products]").innerHTML = request.responseText;
         $("[data-cart-category]").innerHTML = category == "all" ? "All Products" : category;
     }
-    $$(".header-category-link")._.classList.remove("active");
 }
 
 var refreshCart = function() {
@@ -92,20 +91,21 @@ var refreshCart = function() {
         request.onload = function() {
             if (request.responseText != "") {
                 $(".cart-manage").classList.remove("disabled");
-                var initialResponse = request.responseText.split("~~~");
+                elt.innerHTML = request.responseText;
+                /*//var initialResponse = request.responseText.split("~~~");
                 var products = initialResponse[0].split("|-|");
-                var quantities = initialResponse[1].split("|-|");
+                //var quantities = initialResponse[1].split("|-|");
                 var finalResult = "<ul>";
                 for (i = 0; i < products.length - 1; i++) {
                     finalResult += "<li><strong>" + products[i] + "</strong>" +
                         "<ul>" +
-                            "<li>Quantity: " + quantities[i] + "</li>" +
+                            "<li>Quantity: X</li>" +
                             "<li><span class=\"link\" onclick=\"removeFromCart('" + products[i] + "')\">Remove</span></li>" +
                         "</ul>" +
                     "</li>";
                 }
                 finalResult += "</ul>";
-                elt.innerHTML = finalResult;
+                elt.innerHTML = finalResult;*/
             } else {
                 $(".cart-manage").classList.add("disabled");
                 elt.innerHTML = "<img src='img/cart-empty.png' class='cart-empty-state'>";
