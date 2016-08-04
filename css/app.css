@@ -50,3 +50,15 @@
     display: inline-block;
     border-radius: 0 5px 5px 0 !important;
 }
+
+.notification {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: #1abc9c;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    display: none;
+}

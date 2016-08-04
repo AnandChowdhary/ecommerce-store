@@ -130,9 +130,11 @@ body {
 
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-a {
-  color: #1EAEDB; }
-a:hover {
+a, .link {
+  color: #1EAEDB;
+  cursor: pointer;
+}
+a:hover, .link:hover {
   color: #0FA0CE; }
 
 

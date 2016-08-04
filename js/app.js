@@ -29,8 +29,23 @@ var addToCart = function(product, quantity) {
     }
 }
 
-var notify = function(notification) {
+var removeFromCart = function(product) {
+    var request = new XMLHttpRequest();
+    request.open("POST", "backend/remove-from-cart.php?product=" + product);
+    request.send();
+    request.onload = function() {
+        refreshCart();
+        notify(request.responseText);
+        $$("[data-productid='" + product + "']")._.removeAttribute("disabled");
+    }
+}
 
+var notify = function(notification) {
+    $(".notification").innerHTML = notification;
+    $(".notification").style.display = "block";
+    setTimeout(function() {
+        $(".notification").style.display = "none";
+    }, 1000);
 }
 
 var clearCart = function() {
@@ -39,8 +54,10 @@ var clearCart = function() {
     request.send();
     request.onload = function() {
         refreshCart();
+        $$(".add-to-cart-button")._.removeAttribute("disabled");
+        refreshCart();
+        notify("Cart Cleared");
     }
-    refreshCart();
 }
 
 var refreshCart = function() {
@@ -59,6 +76,7 @@ var refreshCart = function() {
                     finalResult += "<li><strong>" + products[i] + "</strong>" +
                         "<ul>" +
                             "<li>Quantity: " + quantities[i] + "</li>" +
+                            "<li><span class=\"link\" onclick=\"removeFromCart('" + products[i] + "')\">Remove</span></li>" +
                         "</ul>" +
                     "</li>";
                 }
