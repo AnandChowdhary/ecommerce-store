@@ -27,12 +27,10 @@
         $checkDisabled = "";
         $buttonText = "Add to Cart";
         if (isset($_COOKIE["cart"])) {
-            if ((strpos($_COOKIE["cart"], "product" . $row["id"] . "|-|")) . "x" == "x") {
+            if (!in_array("product" . $row["id"], unserialize($_COOKIE["cart"]))) {
                 $checkDisabled = "";
-                $buttonText = "Add to Cart";
             } else {
                 $checkDisabled = " disabled='disabled'";
-                $buttonText = "Added";
             }
         }
         echo '<div class="product three columns" id="product' . $row["id"] . '">' . "\n";

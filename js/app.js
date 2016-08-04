@@ -29,14 +29,12 @@ $(document)._.addEventListener("DOMContentLoaded", function() {
 
 var addToCart = function(product, quantity) {
     $("#" + product + " .add-to-cart-button").setAttribute("disabled", "disabled");
-    $("#" + product + " .add-to-cart-button").innerHTML = "Adding...";
     var request = new XMLHttpRequest();
     request.open("POST", "backend/add-to-cart.php?product=" + product + "&quantity=" + quantity);
     request.send();
     request.onload = function() {
         refreshCart();
         notify(request.responseText);
-        $("#" + product + " .add-to-cart-button").innerHTML = "Added";
     }
 }
 
